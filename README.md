@@ -17,18 +17,18 @@ Things you may want to cover:
 |------|----|-------|
 |email|string|null: false|
 |password|string|null: false|
-|username|string|null: false|
+|name|string|null: false|
 ### Association
-- has_many :group
+- has_many :groups_users
 - has_many :messages
 
 ## groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|groupname|string|null: false|
-|user_id|integer|null: false, foreign_key: true|
+|name|string|null: false|
+
 ### Asociation
-- has_many :user
+- has_many :groups_users
 - has_many :messages
 
 ## messasgesテーブル
