@@ -26,7 +26,6 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-
 ### Asociation
 - has_many :groups_users
 - has_many :messages
