@@ -62,8 +62,8 @@ $(function(){
       })
       .fail(function(){
         alert('error');
-      });
-      .always((){
+      })
+      .always(function(){
         $(".form__submit").prop("disabled", false);
       });
       return false;
