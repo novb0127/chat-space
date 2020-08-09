@@ -64,7 +64,7 @@ $(function(){
         alert('error');
       });
       .always((){
-        $(".form__submit").removeAttr("disabled");
+        $(".form__submit").prop("disabled", false);
       });
       return false;
   });
