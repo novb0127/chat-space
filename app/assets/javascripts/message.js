@@ -1,4 +1,5 @@
 $(function(){
+  
 
   function buildHTML(message){
     if ( message.image ) {
@@ -9,7 +10,7 @@ $(function(){
               ${message.user_name}
             </div>
             <div class="upper-message__date">
-              ${message.date}
+              ${message.created_at}
             </div>
           </div>
           <div class="lower-message">
@@ -28,7 +29,7 @@ $(function(){
               ${message.user_name}
             </div>
             <div class="upper-message__date">
-              ${message.date}
+              ${message.created_at}
             </div>
           </div>
           <div class="lower-message">
@@ -41,6 +42,7 @@ $(function(){
     };
   }
 
+  
 
   $('#new_message').on('submit', function(e){
       e.preventDefault();
@@ -65,7 +67,37 @@ $(function(){
       })
       .always(function(){
         $(".form__submit").prop("disabled", false);
+      })
+
+  
+      //return false;
+    });
+    
+    var reloadMessages = function() {
+      console.log("aaa")
+      var last_message_id = $('.message:last').data("message-id");
+      $.ajax({
+        url: "api/messages",
+        type: 'get',
+        dataType: 'json',
+        data: {id: last_message_id}
+      })
+      .done(function(messages) {
+        if (messages.length !== 0) {
+          var insertHTML = '';
+          $.each(messages, function(i, message) {
+            insertHTML += buildHTML(message)
+          });
+          $('.messages').append(insertHTML);
+          $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight});
+        }
+      })
+      .fail(function() {
+        alert('error');
       });
-      return false;
+    };
+      if (document.location.href.match(/\/groups\/\d+\/messages/)) {
+        setInterval(reloadMessages, 7000);
+      }
+
   });
-});
