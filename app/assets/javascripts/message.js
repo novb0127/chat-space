@@ -69,12 +69,9 @@ $(function(){
         $(".form__submit").prop("disabled", false);
       })
 
-  
-      //return false;
     });
     
     var reloadMessages = function() {
-      console.log("aaa")
       var last_message_id = $('.message:last').data("message-id");
       $.ajax({
         url: "api/messages",
